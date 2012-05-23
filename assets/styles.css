@@ -7,3 +7,25 @@ body {
     padding: 9px 0;                                                                                                                                                                                    
 }                                                                                                                                                                                                      
 
+.label.Product {
+    background-color: #74B335;
+}
+
+.label.Diagnostic {
+    background-color: #42B4C4;
+}
+
+.label.Develop {
+    background-color: #d97c2b;
+}
+
+.label.Experimental {
+    background-color: #B33535;
+}
+
+.label.arch {
+}
+
+.label.tag {
+    background-color: #81789E;
+}
