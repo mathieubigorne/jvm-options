@@ -74,20 +74,25 @@ sub p
 
         $op =~ s/product|lp64_product/Product/g;
 
-        xhtml($op, $na, $ty, $df, $de, \@arch);
+        lines($op, $na, $ty, $df, $de, \@arch);
     }
 
 
-    if($n++ == 2) {print "</div>\n<div class=\"row-fluid\">\n";
-        $n=0;
-    }
+    #if($n++ == 2) {print "</div>\n<div class=\"row-fluid\">\n";
+    #    $n=0;
+    #}
 }
 
-sub xhtml
+sub cards
 {
     $arch = join("</span> <span class='label arch'>", @{$_[5]});
     print "<div class='span4 well'><h3>$_[1]</h3><p><strong>Type : </strong>$_[2]</p><p><strong>Default value : </strong>$_[3]</p><p>$_[4]</p><p><span class='label $_[0]'>$_[0]</span> <span class='label arch'>$arch</span></p></div>\n";
+}
 
+sub lines
+{
+    $arch = join("</span> <span class='label arch'>", @{$_[5]});
+    print "<div class='span12 well jvm-option'><p class='pull-right option-category'><span class='label $_[0]'>$_[0]</span> <span class='label arch'>$arch</span></p><p class='pull-right option-type'><strong>Type : </strong>$_[2]</p><p class='pull-right option-default-value'><strong>Default value : </strong>$_[3]</p><h3>$_[1]</h3><p>$_[4]</p></div>\n";
 }
 
 sub xml
