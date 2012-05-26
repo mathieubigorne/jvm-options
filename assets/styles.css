@@ -21,8 +21,9 @@ body {
 }
 
 .row-fluid [class*="span"] {
-  margin-left: 0 !important;
+    margin-left: 0 !important;
 }
+
 .sidebar-nav {
     padding: 9px 0;
 }
@@ -52,4 +53,8 @@ body {
 
 p.option-category, p.option-default-value, p.option-type {
     margin: 0px 20px;
+}
+
+input#search-query {
+    width: 500px;
 }
