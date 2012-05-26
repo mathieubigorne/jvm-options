@@ -16,13 +16,16 @@
  */
 
 body {
-    padding-top: 60px;                                                                                                                                                                                 
-    padding-bottom: 40px;                                                                                                                                                                              
-}                                                                                                                                                                                                      
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
 
-.sidebar-nav {                                                                                                                                                                                         
-    padding: 9px 0;                                                                                                                                                                                    
-}                                                                                                                                                                                                      
+.row-fluid [class*="span"] {
+  margin-left: 0 !important;
+}
+.sidebar-nav {
+    padding: 9px 0;
+}
 
 .label.Product {
     background-color: #3ab34a;
@@ -45,4 +48,8 @@ body {
 
 .label.tag {
     background-color: #7a3ab3;
+}
+
+p.option-category, p.option-default-value, p.option-type {
+    margin: 0px 20px;
 }
