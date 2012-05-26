@@ -1,4 +1,21 @@
-body {                                                                                                                                                                                                 
+/*
+ * Copyright (c) Pierre Laporte 2012.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+body {
     padding-top: 60px;                                                                                                                                                                                 
     padding-bottom: 40px;                                                                                                                                                                              
 }                                                                                                                                                                                                      
@@ -8,24 +25,24 @@ body {
 }                                                                                                                                                                                                      
 
 .label.Product {
-    background-color: #74B335;
+    background-color: #3ab34a;
 }
 
 .label.Diagnostic {
-    background-color: #42B4C4;
+    background-color: #3a8bb3;
 }
 
 .label.Develop {
-    background-color: #d97c2b;
+    background-color: #ea6720;
 }
 
 .label.Experimental {
-    background-color: #B33535;
+    background-color: #b33a5a;
 }
 
 .label.arch {
 }
 
 .label.tag {
-    background-color: #81789E;
+    background-color: #7a3ab3;
 }
