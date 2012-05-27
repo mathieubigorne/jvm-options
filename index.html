@@ -57,12 +57,19 @@
         </div>
         <div class="container-fluid">
             <div class="row-fluid">
-                <form class="form-search" onsubmit="return false;">
-                    <fieldset>
-                        <label for="search-query">Restrict the displayed options to those containing the following words : </label>
-                        <input type="text" id="search-query" value="" oninput="refreshListOptions()"/>
-                    </fieldset>
-                </form>
+                <div class="span10">
+                    <form class="form-search" onsubmit="return false;">
+                        <fieldset>
+                            <label for="search-query">Restrict the displayed options to those containing the following
+                                words : </label>
+                            <input type="text" id="search-query" value="" oninput="filterDisplayedOptions()"/>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="span2" id="options-indicator">
+                    ### options available<br/>
+                    ### displayed options
+                </div>
             </div>
             <hr />
             <div class="row-fluid">
@@ -739,6 +746,7 @@
             <script type="text/javascript">
                 $(function(){
                     $('#search-query').focus();
+                    filterDisplayedOptions();
                 });
             </script>
         </div>

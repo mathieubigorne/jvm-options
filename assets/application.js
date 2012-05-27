@@ -15,14 +15,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function refreshListOptions() {
+function filterDisplayedOptions() {
     var tokens = $('#search-query').val().toLowerCase().split(/\s+/);
+    var nbOptions = 0;
+    var nbDisplayedOptions = 0;
 
     $("div.jvm-option").each(function() {
+        nbOptions++;
         $(this).css('display', 'block');
         for (i = 0; i < tokens.length; i++) {
             if ($(this).text().toLowerCase().indexOf(tokens[i]) == -1) {
                 $(this).css('display', 'none');
+            } else {
+                nbDisplayedOptions++;
             }
         }
     });
@@ -30,4 +35,6 @@ function refreshListOptions() {
     // Case sensitive version :
     // $("div.jvm-option:not(:contains('" + query + "'))").css('display', 'none');
     // $("div.jvm-option:contains('" + query + "')").css('display', 'block');
+
+    $("#options-indicator").html(nbOptions + " options available<br/>" + nbDisplayedOptions + " displayed options");
 }
