@@ -6,7 +6,8 @@ $n=0;
 
 print "<div class=\"row-fluid\">\n";
 while(<>) {
-    if(/  (product|lp64_product|product_pd|product_rw|manageable)\(/) { 
+    #if(/  (product|lp64_product|product_pd|product_rw|manageable)\(/) { 
+    if(/  diagnostic\(/) { 
         chomp;
         $in = 1;
         $l = $_;
@@ -74,6 +75,7 @@ sub p
         }
 
         $op =~ s/lp64_product|product_pd|product_rw|manageable|product/Product/g;
+        $op =~ s/diagnostic/Diagnostic/g;
 
         lines($op, $na, $ty, $df, $de, \@arch);
     }
