@@ -4,7 +4,8 @@ $in = 0;
 $l = "";
 $n=0;
 
-print "<div class=\"row-fluid\">\n";
+print "{ \"options\": [\n";
+#print "<div class=\"row-fluid\">\n";
 while(<>) {
     #if(/  (product|lp64_product|product_pd|product_rw|manageable)\(/) { 
     if(/  diagnostic\(/) { 
@@ -23,7 +24,8 @@ while(<>) {
         }
     }
 }
-print "</div>\n";
+#print "</div>\n";
+print "] }";
 
 
 sub clean
@@ -77,7 +79,7 @@ sub p
         $op =~ s/lp64_product|product_pd|product_rw|manageable|product/Product/g;
         $op =~ s/diagnostic/Diagnostic/g;
 
-        lines($op, $na, $ty, $df, $de, \@arch);
+        tojson($op, $na, $ty, $df, $de, \@arch);
     }
 
 
@@ -90,6 +92,13 @@ sub cards
 {
     $arch = join("</span> <span class='label arch'>", @{$_[5]});
     print "<div class='span4 well'><h3>$_[1]</h3><p><strong>Type : </strong>$_[2]</p><p><strong>Default value : </strong>$_[3]</p><p>$_[4]</p><p><span class='label $_[0]'>$_[0]</span> <span class='label arch'>$arch</span></p></div>\n";
+}
+
+sub tojson
+{
+    $arch = join('", "', @{$_[5]});
+    printf('{ "name" : "%s", "type" : "%s", "default" : "%s", "description" : "%s", "category" : "%s", "tags" : [ "%s" ] },' . "\n", $_[1], $_[2], $_[3], $_[4], $_[0], $arch);
+    #print "{ \"name\" : \"$_[1]\", \"type\" : \"$_[2]\", \"default\" : \"$_[3]\", \"description\" : \"$_[4]\", \"category\" : \"$_[0]\", \"tags\" : [ { \"$arch\" } ] }\n";
 }
 
 sub lines
