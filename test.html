@@ -1,0 +1,210 @@
+<!--
+  ~ Copyright (c) Pierre Laporte 2012.
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.">
+
+    <meta name="description" content="The complete reference of all existing Java Hotspot JVM Options">
+    <meta name="author" content="Pierre Laporte (pierre@pingtimeout.fr)">
+    <meta name="copyright" content="(c) Pierre Laporte 2012"/>
+
+    <title>JVM Options - The complete reference</title>
+
+    <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/styles.css" rel="stylesheet">
+    <link href="assets/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="assets/pure/pure_min.js"></script>
+    <script src="assets/application.js"></script>
+
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="brand" href="#">JVM Options - The complete reference</a> <span
+                class="pull-right btn-toolbar">v0.4</span>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span10">
+            <form class="form-search" onsubmit="return false;">
+                <fieldset>
+                    <label for="search-query">Restrict the displayed options to those containing the following
+                        words : </label>
+                    <input type="text" id="search-query" value="" oninput="filterDisplayedOptions()"/>
+                </fieldset>
+            </form>
+        </div>
+        <div class="span2" id="options-indicator">
+            ### options available<br/>
+            ### displayed options
+        </div>
+    </div>
+    <hr/>
+    <div class="row-fluid" id="options-container">
+        <div class='span12 well jvm-option'>
+            <p class='pull-right option-category'></p>
+            <p class='pull-right option-type'></p>
+            <p class='pull-right option-default-value'></p>
+            <h3></h3>
+            <p class="option-description"></p>
+        </div>
+    </div>
+    <hr/>
+    <footer>
+        <p>&copy; Pierre Laporte 2012</p>
+    </footer>
+
+    <script type="text/javascript">
+        $(function() {
+            var data= { "options": [
+                { "name" : "PrintCompressedOopsMode", "type" : "Boolean", "default" : "false", "description" : "Print compressed oops base address and encoding mode  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "UnlockDiagnosticVMOptions", "type" : "Boolean", "default" : "trueInDebug", "description" : "Enable normal processing of flags relating to field diagnostics  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "ForceUnreachable", "type" : "Boolean", "default" : "false", "description" : "Make all non code cache addresses to be unreachable with forcing use of 64bit literal fixups  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "LogEvents", "type" : "Boolean", "default" : "true", "description" : "Enable the various ring buffer event logs  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "LogEventsBufferEntries", "type" : "Integer", "default" : "10", "description" : "Enable the various ring buffer event logs  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "LogCompilation", "type" : "Boolean", "default" : "false", "description" : "Log compilation activity in detail to hotspot.log or LogFile  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "TraceNMethodInstalls", "type" : "Boolean", "default" : "false", "description" : "Trace nmethod intallation  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "ScavengeRootsInCode", "type" : "Integer", "default" : "2", "description" : "0: do not allow scavengable oops in the code cache; 1: allow scavenging from the code cache; 2: emit as many constants as the compiler can see  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "TraceOSRBreakpoint", "type" : "Boolean", "default" : "false", "description" : "Trace OSR Breakpoint   ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "TraceCompileTriggered", "type" : "Boolean", "default" : "false", "description" : "Trace compile triggered  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "TraceTriggers", "type" : "Boolean", "default" : "false", "description" : "Trace triggers  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "PrintCompilation2", "type" : "Boolean", "default" : "false", "description" : "Print additional statistics per compilation  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "PrintAdapterHandlers", "type" : "Boolean", "default" : "false", "description" : "Print code generated for i2c/c2i adapters  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "PrintAssembly", "type" : "Boolean", "default" : "false", "description" : "Print assembly code (using external disassembler.so)  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "PrintAssemblyOptions", "type" : "String", "default" : "null", "description" : "Options string passed to disassembler.so  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "PrintNMethods", "type" : "Boolean", "default" : "false", "description" : "Print assembly code for nmethods when generated  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "PrintNativeNMethods", "type" : "Boolean", "default" : "false", "description" : "Print assembly code for native nmethods when generated  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "PrintStubCode", "type" : "Boolean", "default" : "false", "description" : "Print generated stub code  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "LinkWellKnownClasses", "type" : "Boolean", "default" : "false", "description" : "Resolve a well known class as soon as its name is seen  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "UnsyncloadClass", "type" : "Boolean", "default" : "false", "description" : "Unstable: VM calls loadClass unsynchronized. Custom class loader  must call VM synchronized for findClass and defineClass.  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "UseIncDec", "type" : "Boolean", "default" : "true", "description" : "Use INC, DEC instructions on x86  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "PrintBiasedLockingStatistics", "type" : "Boolean", "default" : "false", "description" : "Print statistics of biased locking in JVM  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "ForceDynamicNumberOfGCThreads", "type" : "Boolean", "default" : "false", "description" : "Force dynamic selection of the number of parallel threads parallel gc will use to aid debugging  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "ParallelGCRetainPLAB", "type" : "Boolean", "default" : "false", "description" : "Retain parallel allocation buffers across scavenges; -- disabled because this currently conflicts with parallel card scanning under certain conditions   ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "ParGCStridesPerThread", "type" : "Positive Integer", "default" : "2", "description" : "The number of strides per worker thread that we divide up the card table scanning work into  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "ParGCCardsPerStrideChunk", "type" : "Integer", "default" : "256", "description" : "The number of cards in each chunk of the parallel chunks used during card table scanning  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "FLSVerifyAllHeapReferences", "type" : "Boolean", "default" : "false", "description" : "Verify that all refs across the FLS boundary are to valid objects  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "FLSVerifyLists", "type" : "Boolean", "default" : "false", "description" : "Do lots of (expensive) FreeListSpace verification  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "FLSVerifyIndexTable", "type" : "Boolean", "default" : "false", "description" : "Do lots of (expensive) FLS index table verification  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "BlockOffsetArrayUseUnallocatedBlock", "type" : "Boolean", "default" : "false", "description" : "Maintain _unallocated_block in BlockOffsetArray (currently applicable only to CMS collector)  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "VerifyBeforeExit", "type" : "Boolean", "default" : "trueInDebug", "description" : "Verify system before exiting  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "VerifyBeforeGC", "type" : "Boolean", "default" : "false", "description" : "Verify memory system before GC  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "VerifyAfterGC", "type" : "Boolean", "default" : "false", "description" : "Verify memory system after GC  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "VerifyDuringGC", "type" : "Boolean", "default" : "false", "description" : "Verify memory system during GC (between phases)  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "GCParallelVerificationEnabled", "type" : "Boolean", "default" : "true", "description" : "Enable parallel memory system verification  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "DeferInitialCardMark", "type" : "Boolean", "default" : "false", "description" : "When +ReduceInitialCardMarks, explicitly defer any that may arise from new_pre_store_barrier  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "VerifyRememberedSets", "type" : "Boolean", "default" : "false", "description" : "Verify GC remembered sets  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "VerifyObjectStartArray", "type" : "Boolean", "default" : "true", "description" : "Verify GC object start array if verify before/after  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "BindCMSThreadToCPU", "type" : "Boolean", "default" : "false", "description" : "Bind CMS Thread to CPU if possible  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "CPUForCMSThread", "type" : "Positive Integer", "default" : "0", "description" : "When BindCMSThreadToCPU is true, the CPU to bind CMS thread to  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "TraceGCTaskThread", "type" : "Boolean", "default" : "false", "description" : "Trace actions of the GC task threads  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "TraceJVMTIObjectTagging", "type" : "Boolean", "default" : "false", "description" : "Trace JVMTI object tagging calls  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "VerifyBeforeIteration", "type" : "Boolean", "default" : "false", "description" : "Verify memory system before JVMTI iteration  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "TraceRedundantCompiles", "type" : "Boolean", "default" : "false", "description" : "Have compile broker print when a request already in the queue is requested again  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "InitialCompileFast", "type" : "Boolean", "default" : "false", "description" : "Initial compile at CompLevel_fast_compile  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "InitialCompileReallyFast", "type" : "Boolean", "default" : "false", "description" : "Initial compile at CompLevel_really_fast_compile (no profile)  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "FullProfileOnReInterpret", "type" : "Boolean", "default" : "true", "description" : "On re-interpret unc-trap compile next at CompLevel_fast_compile  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "PrintInlining", "type" : "Boolean", "default" : "false", "description" : "prints inlining optimizations  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "PrintIntrinsics", "type" : "Boolean", "default" : "false", "description" : "prints attempted and successful inlining of intrinsics  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "DisableIntrinsic", "type" : "String list (comma separated)", "default" : "--empty value--", "description" : "do not expand intrinsics whose (internal) names appear here  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "DebugNonSafepoints", "type" : "Boolean", "default" : "trueInDebug", "description" : "Generate extra debugging info for non-safepoints in nmethods  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "DebugInlinedCalls", "type" : "Boolean", "default" : "true", "description" : "If false, restricts profiled locations to the root method only  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "SerializeVMOutput", "type" : "Boolean", "default" : "true", "description" : "Use a mutex to serialize output to tty and hotspot.log  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "DisplayVMOutput", "type" : "Boolean", "default" : "true", "description" : "Display all VM output on the tty, independently of LogVMOutput  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "LogVMOutput", "type" : "Boolean", "default" : "trueInDebug", "description" : "Save VM output to hotspot.log, or to LogFile  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "LogFile", "type" : "String", "default" : "null", "description" : "If LogVMOutput is on, save VM output to this file [hotspot.log]  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "ProfileDynamicTypes", "type" : "Boolean", "default" : "true", "description" : "do extra type profiling and use it more aggressively  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "PrintInterpreter", "type" : "Boolean", "default" : "false", "description" : "Prints the generated interpreter code  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "PrintSignatureHandlers", "type" : "Boolean", "default" : "false", "description" : "Print code generated for native method signature handlers  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "MallocVerifyInterval", "type" : "Integer", "default" : "0", "description" : "if non-zero, verify C heap after every N calls to malloc/realloc/free  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "MallocVerifyStart", "type" : "Integer", "default" : "0", "description" : "if non-zero, start verifying C heap after Nth call to malloc/realloc/free  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "VerifyGCStartAt", "type" : "Positive Integer", "default" : "0", "description" : "GC invoke count where +VerifyBefore/AfterGC kicks in  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "VerifyGCLevel", "type" : "Integer", "default" : "0", "description" : "Generation level at which to start +VerifyBefore/AfterGC  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "UseNewCode", "type" : "Boolean", "default" : "false", "description" : "Testing Only: Use the new version while testing  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "UseNewCode2", "type" : "Boolean", "default" : "false", "description" : "Testing Only: Use the new version while testing  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "UseNewCode3", "type" : "Boolean", "default" : "false", "description" : "Testing Only: Use the new version while testing  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "SharedOptimizeColdStart", "type" : "Boolean", "default" : "true", "description" : "At dump time, order shared objects to achieve better cold startup time.  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "SharedSkipVerify", "type" : "Boolean", "default" : "false", "description" : "Skip assert() and verify() which page-in unwanted shared objects.   ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "EnableInvokeDynamic", "type" : "Boolean", "default" : "true", "description" : "support JSR 292 (method handles, invokedynamic, anonymous classes  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "MethodHandlePushLimit", "type" : "Integer", "default" : "3", "description" : "number of additional stack slots a method handle may push  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "PrintMethodHandleStubs", "type" : "Boolean", "default" : "false", "description" : "Print generated stub code for method handles  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "VerifyMethodHandles", "type" : "Boolean", "default" : "trueInDebug", "description" : "perform extra checks when constructing method handles  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "OptimizeMethodHandles", "type" : "Boolean", "default" : "true", "description" : "when constructing method handles, try to improve them  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "PauseAtStartup", "type" : "Boolean", "default" : "false", "description" : "Causes the VM to pause at startup time and wait for the pause file to be removed (default: ./vm.paused.&lt;pid&gt;)  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "PauseAtStartupFile", "type" : "String", "default" : "null", "description" : "The file to create and for whose removal to await when pausing at startup. (default: ./vm.paused.&lt;pid&gt;)  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "PauseAtExit", "type" : "Boolean", "default" : "false", "description" : "Pause and wait for keypress on exit if a debugger is attached  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+                { "name" : "PrintDTraceDOF", "type" : "Boolean", "default" : "false", "description" : "Print the DTrace DOF passed to the system for JSDT probes  ", "category" : "Diagnostic", "tags" : [ "32-bits", "64-bits" ] },
+            ] };
+
+            //declaration of the actions PURE has to do
+            var directive = {
+                'div.jvm-option':{
+                    'option<-options':{
+                        'h3':'option.name',
+                        'p.option-type':'option.type',
+                        'p.option-default-value':'option.default',
+                        'p.option-description':'option.description',
+                        'p.option-category':'option.category'
+                    }
+//,
+//                    sort:function(a, b) {
+//                        return a.name > b.name ? 1 : -1;
+//                    },
+//                    filter:function(a) {
+//                        return a.context.legs === a.item.legs;
+//                    }
+                }
+            };
+
+//        <div class='span12 well jvm-option'>
+//            <p class='pull-right option-category'></p>
+//            <p class='pull-right option-type'></p>
+//            <p class='pull-right option-default-value'></p>
+//            <h3></h3>
+//            <p class="option-description"></p>
+//        </div>
+            // note the use of render instead of autoRender, and the 2nd argument
+            $('div#options-container').render(data, directive);
+
+            $('#search-query').focus();
+
+//            filterDisplayedOptions();
+        });
+    </script>
+</div>
+</body>
+</html>
