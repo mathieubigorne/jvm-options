@@ -58,3 +58,25 @@ p.option-category, p.option-default-value, p.option-type {
 input#search-query {
     width: 300px;
 }
+
+.navbar {
+    border-bottom: 8px solid #48183E;
+    background-color:#722960;
+}
+.navbar-inner {
+	background-image:none;
+    background: none;
+    color: #FFFFFF;
+}
+.navbar .brand {
+    color: #FFFFFF;
+    font-weight:bold;
+}
+
+.well {
+	border: 1px solid #722960;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #722960;
+}
