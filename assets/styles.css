@@ -56,5 +56,5 @@ p.option-category, p.option-default-value, p.option-type {
 }
 
 input#search-query {
-    width: 500px;
+    width: 300px;
 }

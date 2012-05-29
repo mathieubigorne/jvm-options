@@ -51,20 +51,17 @@
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container-fluid">
-                    <a class="brand" href="#">JVM Options - The complete reference</a> <span class="pull-right btn-toolbar">v0.3</span>
+                    <a class="brand" href="#">JVM Options - The complete reference</a>
+	                <form class="navbar-search pull-left" onsubmit="return false;">
+    	                <fieldset>
+        	                <input type="text" class="search-query span2" placeholder="Restrict the displayed options" id="search-query" value="" oninput="refreshListOptions()"/>
+            	        </fieldset>
+	                </form>
+                    <span class="pull-right btn-toolbar">v0.3</span>
                 </div>
             </div>
         </div>
         <div class="container-fluid">
-            <div class="row-fluid">
-                <form class="form-search" onsubmit="return false;">
-                    <fieldset>
-                        <label for="search-query">Restrict the displayed options to those containing the following words : </label>
-                        <input type="text" id="search-query" value="" oninput="refreshListOptions()"/>
-                    </fieldset>
-                </form>
-            </div>
-            <hr />
             <div class="row-fluid">
                 <div class='span12 well jvm-option'><p class='pull-right option-category'><span class='label Product'>Product</span> <span class='label arch'>64-bits</span></p><p class='pull-right option-type'><strong>Type : </strong>Boolean</p><p class='pull-right option-default-value'><strong>Default value : </strong>false</p><h3>UseCompressedOops</h3><p>Use 32-bit object references in 64-bit VM. lp64_product means flag is always constant in 32 bit VM  </p></div>
                 <div class='span12 well jvm-option'><p class='pull-right option-category'><span class='label Product'>Product</span> <span class='label arch'>32-bits</span> <span class='label arch'>64-bits</span></p><p class='pull-right option-type'><strong>Type : </strong>Positive Integer</p><p class='pull-right option-default-value'><strong>Default value : </strong>---Platform dependent---</p><h3>HeapBaseMinAddress</h3><p>OS specific low limit for heap base address  </p></div>
