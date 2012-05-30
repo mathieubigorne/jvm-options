@@ -51,21 +51,18 @@
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container-fluid">
-                    <a class="brand" href="#">JVM Options - The complete reference</a> <span class="pull-right btn-toolbar">v0.4</span>
+                    <a class="brand" href="#">JVM Options - The complete reference</a>
+	                <form class="navbar-search pull-left" onsubmit="return false;">
+    	                <fieldset>
+        	                <input type="text" class="search-query span2" placeholder="Restrict the displayed options" id="search-query" value="" oninput="refreshListOptions()"/>
+            	        </fieldset>
+	                </form>
+                    <span class="pull-right btn-toolbar">v0.4</span>
                 </div>
             </div>
         </div>
         <div class="container-fluid">
             <div class="row-fluid">
-                <div class="span10">
-                    <form class="form-search" onsubmit="return false;">
-                        <fieldset>
-                            <label for="search-query">Restrict the displayed options to those containing the following
-                                words : </label>
-                            <input type="text" id="search-query" value="" oninput="filterDisplayedOptions()"/>
-                        </fieldset>
-                    </form>
-                </div>
                 <div class="span2" id="options-indicator">
                     ### options available<br/>
                     ### displayed options
@@ -738,9 +735,36 @@
                 <div class='span12 well jvm-option'><p class='pull-right option-category'><span class='label Diagnostic'>Diagnostic</span> <span class='label arch'>32-bits</span> <span class='label arch'>64-bits</span></p><p class='pull-right option-type'><strong>Type : </strong>Boolean</p><p class='pull-right option-default-value'><strong>Default value : </strong>false</p><h3>PauseAtExit</h3><p>Pause and wait for keypress on exit if a debugger is attached  </p></div>
                 <div class='span12 well jvm-option'><p class='pull-right option-category'><span class='label Diagnostic'>Diagnostic</span> <span class='label arch'>32-bits</span> <span class='label arch'>64-bits</span></p><p class='pull-right option-type'><strong>Type : </strong>Boolean</p><p class='pull-right option-default-value'><strong>Default value : </strong>false</p><h3>PrintDTraceDOF</h3><p>Print the DTrace DOF passed to the system for JSDT probes  </p></div>
             </div>
-            <hr />
             <footer>
-                <p>&copy; Pierre Laporte 2012</p>
+	            <hr />
+				<div class="row">
+					<div class="span12">Based on <em>"<a href="http://www.pingtimeout.fr/2012/05/jvm-options-complete-reference.html">Hotspot JVM Options - The complete reference</a>"</em> published by <a href="https://twitter.com/#!/pingtimeout">Pierre Laporte</a> on <a href="http://www.pingtimeout.fr/">PingTimeout.fr</a>.</div>
+				</div>
+    	        <hr />
+				<div class="row">
+					<div class="span1">
+						<img src="assets/img/plaporte.png" />
+					</div>
+					<div class="span5">
+						<h2>Pierre Laporte</h2>
+						<ul>
+							<li><a href="http://www.pingtimeout.fr/">PingTimeout.fr</a></li>
+							<li><a href="https://twitter.com/#!/pingtimeout">@pingtimeout</a></li>
+							<li><a href="https://github.com/pingtimeout">On GitHub</a></li>
+						</ul>
+					</div>
+					<div class="span2">
+						<img src="assets/img/xebia.png" />
+					</div>
+					<div class="span4">
+						<h2>Xebia</h2>
+						<ul>
+							<li><a href="http://blog.xebia.fr/">blog.xebia.fr</a></li>
+							<li><a href="https://twitter.com/#!/XebiaFr">@XebiaFr</a></li>
+							<li><a href="https://github.com/xebia-france">On GitHub</a></li>
+						</ul>
+					</div>
+				</div>
             </footer>
 
             <script type="text/javascript">
