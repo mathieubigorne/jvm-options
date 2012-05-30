@@ -59,22 +59,28 @@ input#search-query {
     width: 300px;
 }
 
+div#options-indicator {
+    margin: 10px 20px 0;
+}
+
 .navbar {
     border-bottom: 8px solid #48183E;
-    background-color:#722960;
+    background-color: #722960;
 }
+
 .navbar-inner {
-	background-image:none;
+    background-image: none;
     background: none;
     color: #FFFFFF;
 }
+
 .navbar .brand {
     color: #FFFFFF;
-    font-weight:bold;
+    font-weight: bold;
 }
 
 .well {
-	border: 1px solid #722960;
+    border: 1px solid #722960;
 }
 
 h1, h2, h3, h4, h5, h6 {
