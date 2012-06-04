@@ -36,11 +36,7 @@ function filterDisplayedOptions() {
     // $("div.jvm-option:not(:contains('" + query + "'))").css('display', 'none');
     // $("div.jvm-option:contains('" + query + "')").css('display', 'block');
 
-    if (nbDisplayedOptions == nbOptions) {
-        $("#options-indicator").html(nbOptions + " displayed options");
-    } else {
-        $("#options-indicator").html(nbDisplayedOptions + " matching options (total : " + nbOptions + ")");
-    }
+    $("#options-indicator").html(nbDisplayedOptions + " matching options (total : " + nbOptions + ")");
 
     if (nbDisplayedOptions == 0) {
         $("#no-result").css('display', 'block');
