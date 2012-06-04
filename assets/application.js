@@ -41,4 +41,10 @@ function filterDisplayedOptions() {
     } else {
         $("#options-indicator").html(nbDisplayedOptions + " matching options (total : " + nbOptions + ")");
     }
+
+    if (nbDisplayedOptions == 0) {
+        $("#no-result").css('display', 'block');
+    } else {
+        $("#no-result").css('display', 'none');
+    }
 }
