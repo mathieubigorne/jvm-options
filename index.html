@@ -80,7 +80,59 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
+        <div class="subnav">
+            <ul class="nav nav-tabs">
+                <li id="display-options" class="active"><a href="#" onclick="displayOptions()">Options list</a></li>
+                <li id="display-help" class=""><a href="#" onclick="displayHelp()">Help</a></li>
+            </ul>
+        </div>
+        <div class="container-fluid" id="help" style="display:none">
+            <div class="row-fluid">
+                <div class="span12 well">
+                    <h2>What is this ?</h2>
+                    <p>This page is a listing of a lot of Hotspot JVM Option that I found in the source of the JVM.</p>
+                    <p>It is based on the article <a href="">"Hotspot JVM Options - The complete reference"</a> that I published on Pingtimeout.fr. After I published it, I was convinced that a better form could be use to present all this information, so I made an application out of it.</p>
+                    <p>This application is released under the GPL v3, and its source code is <a href="https://github.com/pingtimeout/jvm-options">available on Github</a>.</p>
+                    <hr/>
+                    <h2>What is the difference between -X and -XX ?</h2>
+                    <p>According to <a href="http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html">Oracle website</a>,
+                    <ul>
+                        <li>Options that begin with -X are non-standard (not guaranteed to be supported on all VM implementations), and are subject to change without notice in subsequent releases of the JDK.</li>
+                        <li>Options that are specified with -XX are not stable and are subject to change without notice.</li>
+                    </ul>
+                    </p>
+                    <p>So even if highly improbable, according to this notice, options like <code>-Xmx512m</code> might be deprecated or changed *without notice* and options like <code>-XX:MaxPermSize</code> might not be stable.</p>
+                    <hr/>
+                    <h2>Options category</h2>
+                    <p>Each option comes with a specific category, which meaning is the following :
+                    <ul>
+                        <li>The options categorized as <span class='label Product'>Product</span> can be used with the command line argument <code>-XX:</code></li>
+                        <li>The options categorized as <span class='label Diagnostic'>Diagnostic</span> can be used with the command line argument <code>-XX:</code> if the argument <code>-XX:+UnlockDiagnosticOption</code> is placed before them</li>
+                    </ul>
+                    </p>
+                    <hr/>
+                    <h2>Options architecture</h2>
+                    <p>Each option comes with one or two labels indicating the architecture on which it is available :
+                    <ul>
+                        <li><span class='label arch'>64-bits</span> means that the option is available on 64-bits platforms</li>
+                        <li><span class='label arch'>32-bits</span> means that the option is available on 32-bits platforms</li>
+                    </ul>
+                    </p>
+                    <hr/>
+                    <h2>Roadmap</h2>
+                    <p>Future versions of this app will include :
+                    <ul>
+                        <li>The options in a JSON file</li>
+                        <li>Custom tags that you may want to put on some options</li>
+                        <li>Search by tags</li>
+                        <li>Search by architecture</li>
+                        <li>Develop and Experimental options</li>
+                        <li>...</li>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" id="jvm-options">
             <div class="row-fluid">
                 <div id="no-result" class="span12 well" style="display: none">No option have been found for this search.</div>
                 <div class='span12 well jvm-option'><p class='pull-right option-category'><span class='label Product'>Product</span> <span class='label arch'>64-bits</span></p><p class='pull-right option-type'><strong>Type : </strong>Boolean</p><p class='pull-right option-default-value'><strong>Default value : </strong>false</p><h3>UseCompressedOops</h3><p>Use 32-bit object references in 64-bit VM. lp64_product means flag is always constant in 32 bit VM  </p></div>
@@ -748,44 +800,45 @@
                 <div class='span12 well jvm-option'><p class='pull-right option-category'><span class='label Diagnostic'>Diagnostic</span> <span class='label arch'>32-bits</span> <span class='label arch'>64-bits</span></p><p class='pull-right option-type'><strong>Type : </strong>Boolean</p><p class='pull-right option-default-value'><strong>Default value : </strong>false</p><h3>PauseAtExit</h3><p>Pause and wait for keypress on exit if a debugger is attached  </p></div>
                 <div class='span12 well jvm-option'><p class='pull-right option-category'><span class='label Diagnostic'>Diagnostic</span> <span class='label arch'>32-bits</span> <span class='label arch'>64-bits</span></p><p class='pull-right option-type'><strong>Type : </strong>Boolean</p><p class='pull-right option-default-value'><strong>Default value : </strong>false</p><h3>PrintDTraceDOF</h3><p>Print the DTrace DOF passed to the system for JSDT probes  </p></div>
             </div>
+        </div>
+        <div class="container-fluid">
             <footer>
-	            <hr />
-				<div class="row">
-					<div class="span12">Based on <em>"<a href="http://www.pingtimeout.fr/2012/05/jvm-options-complete-reference.html">Hotspot JVM Options - The complete reference</a>"</em> published by <a href="https://twitter.com/#!/pingtimeout">Pierre Laporte</a> on <a href="http://www.pingtimeout.fr/">PingTimeout.fr</a>.</div>
-				</div>
-    	        <hr />
-				<div class="row">
-					<div class="span1">
-						<img src="assets/img/plaporte.png" />
-					</div>
-					<div class="span5">
-						<h2>Pierre Laporte</h2>
-						<ul>
-							<li><a href="http://www.pingtimeout.fr/">PingTimeout.fr</a></li>
-							<li><a href="https://twitter.com/#!/pingtimeout">@pingtimeout</a></li>
-							<li><a href="https://github.com/pingtimeout">On GitHub</a></li>
-						</ul>
-					</div>
-					<div class="span2">
-						<img src="assets/img/xebia.png" />
-					</div>
-					<div class="span4">
-						<h2>Xebia</h2>
-						<ul>
-							<li><a href="http://blog.xebia.fr/">blog.xebia.fr</a></li>
-							<li><a href="https://twitter.com/#!/XebiaFr">@XebiaFr</a></li>
-							<li><a href="https://github.com/xebia-france">On GitHub</a></li>
-						</ul>
-					</div>
-				</div>
+            <hr />
+            <div class="row">
+                <div class="span12">Based on <em>"<a href="http://www.pingtimeout.fr/2012/05/jvm-options-complete-reference.html">Hotspot JVM Options - The complete reference</a>"</em> published by <a href="https://twitter.com/#!/pingtimeout">Pierre Laporte</a> on <a href="http://www.pingtimeout.fr/">PingTimeout.fr</a>.</div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="span1">
+                    <img src="assets/img/plaporte.png" />
+                </div>
+                <div class="span5">
+                    <h2>Pierre Laporte</h2>
+                    <ul>
+                        <li><a href="http://www.pingtimeout.fr/">PingTimeout.fr</a></li>
+                        <li><a href="https://twitter.com/#!/pingtimeout">@pingtimeout</a></li>
+                        <li><a href="https://github.com/pingtimeout">On GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="span2">
+                    <img src="assets/img/xebia.png" />
+                </div>
+                <div class="span4">
+                    <h2>Xebia</h2>
+                    <ul>
+                        <li><a href="http://blog.xebia.fr/">blog.xebia.fr</a></li>
+                        <li><a href="https://twitter.com/#!/XebiaFr">@XebiaFr</a></li>
+                        <li><a href="https://github.com/xebia-france">On GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
             </footer>
-
-            <script type="text/javascript">
-                $(function(){
+        </div>
+        <script type="text/javascript">
+            $(function(){
                     $('#search-query').focus();
                     filterDisplayedOptions();
-                });
-            </script>
-        </div>
+                    });
+        </script>
     </body>
 </html>

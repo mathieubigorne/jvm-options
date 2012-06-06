@@ -44,3 +44,18 @@ function filterDisplayedOptions() {
         $("#no-result").css('display', 'none');
     }
 }
+
+function displayHelp() {
+    $("div#help").css('display', 'block');
+    $("li#display-help").toggleClass('active');
+    $("div#jvm-options").css('display', 'none');
+    $("li#display-options").toggleClass('active');
+}
+
+function displayOptions() {
+    $("div#help").css('display', 'none');
+    $("li#display-help").toggleClass('active');
+    $("div#jvm-options").css('display', 'block');
+    $("li#display-options").toggleClass('active');
+}
+
