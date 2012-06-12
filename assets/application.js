@@ -61,10 +61,12 @@ function displayOptions() {
 
 function setCompactDisplayMode() {
     $("div.jvm-option p:not(p.hide)").toggleClass('hide');
+    $("div.jvm-option.well:not(div.well-small)").toggleClass('well-small');
 }
 
 function setFullDisplayMode() {
     $("div.jvm-option p.hide").toggleClass('hide');
+    $("div.jvm-option.well.well-small").toggleClass('well-small');
 }
 
 
