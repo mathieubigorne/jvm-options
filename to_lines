@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+
+print "<div class=\"row-fluid\">\n";
+while(<>) {
+  if(/^(.*)\|(.*)\|(.*)\|(.*)\|(.*)\|(.*)$/){
+    ($name, $label, $arch, $type, $default, $descr) = split('\|', $_);
+    $archtml = join("</span> <span class='label arch'>", split(",", $arch));
+    print "<div class='span12 well jvm-option'><p class='pull-right option-category'><span class='label $label'>$label</span> <span class='label arch'>$archtml</span></p><p class='pull-right option-type'><strong>Type : </strong>$type</p><p class='pull-right option-default-value'><strong>Default value : </strong>$default</p><h3>$name</h3><p>$descr</p></div>\n";
+  }
+}
+print "</div>\n";
+
