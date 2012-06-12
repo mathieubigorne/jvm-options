@@ -4,10 +4,10 @@ $in = 0;
 $l = "";
 $n=0;
 
-print "<div class=\"row-fluid\">\n";
+#print "<div class=\"row-fluid\">\n";
+print "Name|Labels|Architecture|Type|Default|Description\n";
 while(<>) {
-    #if(/  (product|lp64_product|product_pd|product_rw|manageable)\(/) { 
-    if(/  develop\(/) { 
+    if(/  (product|lp64_product|product_pd|product_rw|manageable|diagnostic|develop)\(/) { 
         chomp;
         $in = 1;
         $l = $_;
@@ -23,7 +23,7 @@ while(<>) {
         }
     }
 }
-print "</div>\n";
+#print "</div>\n";
 
 
 sub clean
@@ -78,7 +78,7 @@ sub p
         $op =~ s/diagnostic/Diagnostic/g;
         $op =~ s/develop/Develop/g;
 
-        lines($op, $na, $ty, $df, $de, \@arch);
+        cesve($op, $na, $ty, $df, $de, \@arch);
     }
 
 
@@ -98,21 +98,11 @@ sub lines
     $arch = join("</span> <span class='label arch'>", @{$_[5]});
     print "<div class='span12 well jvm-option'><p class='pull-right option-category'><span class='label $_[0]'>$_[0]</span> <span class='label arch'>$arch</span></p><p class='pull-right option-type'><strong>Type : </strong>$_[2]</p><p class='pull-right option-default-value'><strong>Default value : </strong>$_[3]</p><h3>$_[1]</h3><p>$_[4]</p></div>\n";
 }
-
-sub xml
+# NAME LABEL ARCH TYPE DEFAULT DESCR
+sub cesve
 {
-    $_=$_[0];
-    s#(.*)\|(.*)\|(.*)\|(.*)#<jvm:option><jvm:name>$1</jvm:name><jvm:type>$2</jvm:type><jvm:default>$3</jvm:default><jvm:description>$4</jvm:description><jvm:tags><jvm:tag>Unknown</jvm:tag></jvm:tags></jvm:option>#g;
-    print "$_\n";
-
-}
-
-sub html
-{
-    $_=$_[0];
-    s#(.*)\|(.*)\|(.*)\|(.*)#<h4>$1</h4><br/>Type : $2<br/>Default value : $3<br/>Description : $4<br/>#g;
-    print "$_\n";
-
+    $arch = join(",", @{$_[5]});
+    print "$_[1]|$_[0]|$arch|$_[2]|$_[3]|$_[4]\n";
 }
 
 sub json
