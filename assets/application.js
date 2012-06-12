@@ -59,3 +59,12 @@ function displayOptions() {
     $("li#display-options").toggleClass('active');
 }
 
+function setCompactDisplayMode() {
+    $("div.jvm-option p:not(p.hide)").toggleClass('hide');
+}
+
+function setFullDisplayMode() {
+    $("div.jvm-option p.hide").toggleClass('hide');
+}
+
+
